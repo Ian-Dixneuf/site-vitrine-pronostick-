@@ -1,0 +1,138 @@
+/* ----- Styles généraux et Variables de Thème ----- */
+:root {
+  --bg-light: #f2f5f7;
+  --surface-light: #ffffff;
+  --text-light: #222;
+  --muted-light: #555;
+
+  --bg-dark: #111827;
+  --surface-dark: #1f2937;
+  --text-dark: #f9fafb;
+  --muted-dark: #9ca3af;
+  
+  --primary: #0f766e;
+  --border-light: rgba(0,0,0,0.08);
+  --border-dark: rgba(255,255,255,0.1);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  /* Thème clair par défaut */
+  background-color: var(--bg-light);
+  color: var(--text-light);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 16px;
+  flex-grow: 1;
+}
+
+h1, h2 {
+  font-size: 72px;
+  background: -webkit-linear-gradient(#eee, #333);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ----- Header ----- */
+.header {
+  background-color: var(--primary);
+  color: #fff;
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+  min-height: 72px;
+  box-sizing: border-box;
+}
+.header .logo { margin: 0; font-size: 1.6em; font-weight: bold; linear-gradient(90deg,rgba(42, 123, 155, 1) 0%, rgba(87, 199, 133, 1) 50%, rgba(237, 221, 83, 1) 100%); }
+.header .site-title { flex: 1; text-align: center; font-size: 1.2em; color: #fff; margin: 0; }
+.nav { display: flex; gap: 18px; align-items: center; list-style: none; margin: 0; padding: 0; }
+.nav li { list-style: none; }
+.header .nav a { color: #fff; text-decoration: none; font-weight: bold; }
+.header .nav a:hover, .header .nav a:focus { color: #ff9500; text-decoration: underline; }
+.nav a.active { text-decoration: underline; color: #ffd700; }
+
+/* ----- Contenus principaux (cartes, etc.) ----- */
+.main-content, .avis, .prono-card, .contact-container {
+  background: var(--surface-light);
+  border: 1px solid var(--border-light);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+  padding: 40px 30px;
+  border-radius: 12px;
+  margin: 60px auto;
+  max-width: 700px;
+  text-align: center;
+}
+.main-content .description { color: var(--muted-light); }
+.main-content .slogan { font-size: 1.5em; }
+
+/* ----- Page Avis ----- */
+.avis-container { max-width: 900px; margin: 40px auto; padding: 0 15px; }
+.avis { padding: 20px; margin-bottom: 20px; text-align: left; }
+.auteur { font-weight: bold; margin-bottom: 5px; }
+.note { color: goldenrod; margin-bottom: 8px; }
+.commentaire, .source { color: var(--muted-light); }
+.source { font-style: italic; margin-top: 5px; font-size: 0.9em; }
+
+/* ----- Page Pronostics ----- */
+.pronos-container { max-width: 900px; margin: 30px auto 60px; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+.prono-card { padding: 20px; margin: 0; }
+.prono-card .match { font-weight: bold; font-size: 1.2em; margin-bottom: 5px; }
+.prono-card .date { color: var(--muted-light);  color: #00ff08;  margin-bottom: 15px; }
+.prono-card .cotes { display: flex; justify-content: space-between; margin-bottom: 15px; }
+.prono-card .conseil { font-weight: bold; color: #ffd700; }
+
+/* ----- Page Contact ----- */
+.contact-container { max-width: 600px; }
+.contact-form { display: flex; flex-direction: column; gap: 15px; margin-top: 20px; }
+.contact-form input, .contact-form textarea {
+  width: 100%; padding: 12px 15px; border-radius: 8px; border: 1px solid var(--border-light);
+  background-color: var(--bg-light); color: var(--text-light); font-size: 1em; box-sizing: border-box;
+}
+.contact-form button {
+  background-color: var(--primary); color: white; padding: 12px 20px; border: none;
+  border-radius: 8px; font-weight: bold; font-size: 1.1em; cursor: pointer;
+}
+.dev-list { list-style: none; padding: 0; margin: 0 auto 20px auto; }
+
+/* ----- Footer Unifié ----- */
+.footer {
+  background-color: var(--primary);
+  color: #fff; padding: 20px 15px; text-align: center; margin-top: auto;
+}
+.footer .footer-inner { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.footer p { margin: 0; font-size: 0.9em; }
+.footer a { color: #fff; text-decoration: none; font-weight: bold; }
+.footer a:hover { text-decoration: underline; }
+
+/* ----- Logique du Dark Mode en pur CSS ----- */
+#theme-toggle { display: none; }
+.theme-toggle-label {
+  cursor: pointer; background: rgba(255,255,255,0.18); border: 1px solid rgba(255,255,255,0.28);
+  color: #fff; padding: 6px 10px; border-radius: 8px; user-select: none;
+}
+#theme-toggle:checked ~ .page-wrapper { background-color: var(--bg-dark); color: var(--text-dark); }
+#theme-toggle:checked ~ .page-wrapper h1, #theme-toggle:checked ~ .page-wrapper h2 { color: var(--text-dark); }
+#theme-toggle:checked ~ .page-wrapper .main-content, #theme-toggle:checked ~ .page-wrapper .avis,
+#theme-toggle:checked ~ .page-wrapper .prono-card, #theme-toggle:checked ~ .page-wrapper .contact-container {
+  background-color: var(--surface-dark); border-color: var(--border-dark);
+}
+#theme-toggle:checked ~ .page-wrapper .main-content .description, #theme-toggle:checked ~ .page-wrapper .commentaire,
+#theme-toggle:checked ~ .page-wrapper .prono-card .date, #theme-toggle:checked ~ .page-wrapper .source { color: var(--muted-dark); }
+#theme-toggle:checked ~ .page-wrapper .contact-form input, #theme-toggle:checked ~ .page-wrapper .contact-form textarea {
+  background-color: var(--bg-dark); color: var(--text-dark); border-color: var(--border-dark);
+}
